@@ -1,5 +1,4 @@
 import math
-import tkinter
 import decimal
 import time
 import datetime
