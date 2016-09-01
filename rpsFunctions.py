@@ -5,6 +5,8 @@ import datetime
 import random
 import re
 import array
+import scipy
+
 
 
 def getUserAction():
@@ -33,6 +35,32 @@ def userActionRecord(p_user_action, r_count, p_count, s_count):
     elif user_action == "s":
         s_count += 1
     return r_count, p_count, s_count
+
+
+def computerNextMove(r,p,s):
+    sum_total = float(r + p + s)
+    r_percent = float(r/sum_total)
+    p_percent = float(p/sum_total)
+    s_percent = float(s/sum_total)
+
+    s_per_num = s_percent
+    p_per_num = p_percent
+    r_per_num = r_percent
+
+    return r_per_num, p_per_num, s_percent, sum_total
+
+
+def winLoss(comp, user, comp_count, user_count, draw_count):
+
+    if comp == user:
+        draw_count += 1
+        return comp_count, user_count, draw_count
+    elif (comp == "p" and user == "r") or (comp == "r" and user == "s") or (comp == "s" and user == "p"):
+        comp_count += 1
+        return comp_count, user_count, draw_count
+    else:
+        user_count += 1
+        return comp_count, user_count, draw_count
 
 
 def userPatternRecognition():
